@@ -531,7 +531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 59508812}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: NewQuickMathGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1174,7 +1174,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 59508812}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: NewReflexGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

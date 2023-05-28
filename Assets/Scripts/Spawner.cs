@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     
     public GameObject target;
+    public bool testBool = true;
     // Update is called once per frame
     void Update()
     {

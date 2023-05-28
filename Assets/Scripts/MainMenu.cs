@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         UpdateCursorVisibility();
+
+        //SceneManager.LoadScene(0);
+        SceneManager.UnloadSceneAsync(1);
+        SceneManager.UnloadSceneAsync(2);
     }
 
     private void UpdateCursorVisibility()
@@ -16,6 +20,19 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = true ? CursorLockMode.None : CursorLockMode.Locked;
     }
+
+    public void NewReflexGame()
+    {
+        Debug.Log("Scene selected : Reflex Game" );
+        SceneManager.LoadScene(1);
+    }
+
+    public void NewQuickMathGame()
+    {
+        Debug.Log("Scene selected : Quick Math Game");
+        SceneManager.LoadScene(2);
+    }
+
 
     public void NewGame()
     {
