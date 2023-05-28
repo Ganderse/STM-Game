@@ -15,7 +15,25 @@ public class ReflexSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        
+
+
+        /*
+        The difficulty will change like this :
+
+        Succesful target hit -> Score + 20 + (Multiplier * 20)
+
+        Multiplier -> (Difficulty) * (Time between shots) / 10
+
+        Time between target shots ->  Total time = Difficulty/2
+
+                                   if Time between target spawn and hit < difficulty / 4 --> difficulty - difficulty*0.1
+                                   if Time between target spawn and hit < 3 * difficulty / 4 --> difficulty + difficulty*0.1
+
+        Missed shots -> Score - 10
+        */
+
+        //Debug.Log(hud.time);
+
         if (timer >= difficulty)
         {
             timer = 0.0f; //restart the timer
@@ -27,7 +45,7 @@ public class ReflexSpawner : MonoBehaviour
 
 
             //Life duration of the object
-            Destroy(obj, difficulty / 2);
+            Destroy(obj, difficulty/2);
         }
         
     }

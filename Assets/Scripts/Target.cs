@@ -25,6 +25,12 @@ public class Target : MonoBehaviour
     void Die()
     {
         hud.IncreaseTargetsHit();
+
+
+        Debug.Log(hud.timeVar);
+
+
+
         Destroy(gameObject);
     }
     

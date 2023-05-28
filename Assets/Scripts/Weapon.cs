@@ -11,6 +11,12 @@ public class Weapon : MonoBehaviour
     public float firerate = 1f;
     private float lastShot = 0f;
 
+
+    private void Start()
+    {
+        hud = GameObject.Find("Canvas").GetComponent<GameHud>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -28,10 +34,18 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hitinfo, range))
         {
             Target target = hitinfo.transform.GetComponent<Target>();
+            Debug.Log(target);
             if (target != null && Time.time > firerate + lastShot)
             {
+                
                 target.TakeDamage(damage);
                 lastShot = Time.time;
+            }
+
+            if(target == null)
+            {
+                hud.test();
+                hud.DecreaseScore();
             }
 
         }
