@@ -8,13 +8,15 @@ public class Weapon : MonoBehaviour
     public Camera fpsCam;
     public float range = 100f;
     public float damage = 100;
-    public float firerate = 1.0f;
+    public float firerate = 1000.0f;
     private float lastShot = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        //Only activates on key press
+        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetKeyDown(KeyCode.Mouse0)) 
         {
             Shoot();
         }

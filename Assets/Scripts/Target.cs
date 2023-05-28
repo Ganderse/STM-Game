@@ -19,7 +19,8 @@ public class Target : MonoBehaviour
     //User has shot the target
     void Die()
     {
-        hud.IncreaseTargetsHit();
+        //hud.GetComponent<Hud>().IncreaseTargetsHit();
+        //hud.IncreaseTargetsHit();
         Destroy(gameObject);
     }
     
