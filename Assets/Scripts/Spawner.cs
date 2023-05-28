@@ -5,13 +5,19 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     
-    public GameObject cubePrefab;
+    public GameObject target;
     // Update is called once per frame
     void Update()
     {
+
+
      if(Input.GetKeyDown(KeyCode.Space))
      {
-        Instantiate(cubePrefab,transform.position, Quaternion.identity);
+
+            var obj = Instantiate(target);
+            obj.transform.position = new Vector3(Random.Range(-3, 3), Random.Range(0, 4), transform.position[2]);
+
+            //Instantiate(target,transform.position, Quaternion.identity);
      }   
     }
 }

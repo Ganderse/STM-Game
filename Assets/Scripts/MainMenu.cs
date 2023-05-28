@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public bool showCursor;
 
     private void Start()
     {
@@ -14,8 +13,8 @@ public class MainMenu : MonoBehaviour
 
     private void UpdateCursorVisibility()
     {
-        Cursor.visible = showCursor;
-        Cursor.lockState = showCursor ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = true;
+        Cursor.lockState = true ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void NewGame()
