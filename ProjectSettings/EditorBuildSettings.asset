@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ReflexScene.unity
     guid: 3f383954820460448bfc8b7a416cd7bb
+  - enabled: 1
+    path: Assets/Scenes/QuickMathScene.unity
+    guid: 102cb5ddafb484412994ae3edaa17611
   m_configObjects: {}

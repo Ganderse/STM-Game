@@ -11,8 +11,10 @@ public class MainMenu : MonoBehaviour
         UpdateCursorVisibility();
 
         //SceneManager.LoadScene(0);
-        SceneManager.UnloadSceneAsync(1);
-        SceneManager.UnloadSceneAsync(2);
+        //SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(2);
+        //SceneManager.UnloadSceneAsync(1);
+        //SceneManager.UnloadSceneAsync(2);
     }
 
     private void UpdateCursorVisibility()

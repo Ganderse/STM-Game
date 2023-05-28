@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    [SerializeField] // Add this attribute to make the hud variable visible in the Inspector
+    public Hud hud;
     public float health = 50f;
 
     public void TakeDamage(float damage)
@@ -14,8 +16,11 @@ public class Target : MonoBehaviour
         }
     }
 
+    //User has shot the target
     void Die()
     {
+        hud.IncreaseTargetsHit();
         Destroy(gameObject);
     }
+    
 }

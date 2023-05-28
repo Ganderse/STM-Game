@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour
 {
+    public Hud hud;
     public UnityEvent OnGunShoot;
     public Camera fpsCam;
     public float range = 100f;
@@ -25,6 +26,7 @@ public class Weapon : MonoBehaviour
             Target target = hitinfo.transform.GetComponent<Target>();
             if (target != null)
             {
+                //hud.IncreaseTargetsHit();
                 target.TakeDamage(damage);
             }
             Debug.Log(hitinfo.transform.name);
