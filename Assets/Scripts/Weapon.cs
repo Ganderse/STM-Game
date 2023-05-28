@@ -3,12 +3,12 @@ using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour
 {
-    public Hud hud;
+    public GameHud hud;
     public UnityEvent OnGunShoot;
     public Camera fpsCam;
     public float range = 100f;
     public float damage = 100;
-    public float firerate = 1000.0f;
+    public float firerate = 1f;
     private float lastShot = 0f;
 
     // Update is called once per frame
@@ -30,7 +30,6 @@ public class Weapon : MonoBehaviour
             Target target = hitinfo.transform.GetComponent<Target>();
             if (target != null && Time.time > firerate + lastShot)
             {
-                //hud.IncreaseTargetsHit();
                 target.TakeDamage(damage);
                 lastShot = Time.time;
             }

@@ -6,14 +6,10 @@ public class ReflexSpawner : MonoBehaviour
 {
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
+    public GameObject Parent;
     public float difficulty = 5.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
-    public Hud hud;
+    public GameHud hud;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,8 +20,9 @@ public class ReflexSpawner : MonoBehaviour
         {
             timer = 0.0f; //restart the timer
 
-            //Spawning the targer
-            var obj = Instantiate(target);
+            //Spawning the target
+            GameObject obj = Instantiate(target);
+            obj.AddComponent<Target>();
             obj.transform.position = new Vector3(Random.Range(-3, 3), Random.Range(0.5f, 4), transform.position[2]);
 
 

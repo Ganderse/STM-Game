@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 
-public class Hud : MonoBehaviour
+public class GameHud : MonoBehaviour
 {
 
     /*
@@ -21,7 +21,7 @@ public class Hud : MonoBehaviour
     //public UnityEngine.UI.Text targetsHitText;
 
     //Game Variable
-    private int targetsHit;
+    private float targetsHit = 0f;
 
     //Text Components
     TextMeshProUGUI targetsHitText;
@@ -31,8 +31,6 @@ public class Hud : MonoBehaviour
     private void Start()
     {
         targetsHitText = targets.GetComponent<TextMeshProUGUI>();
-
-        targetsHit = 0;
         UpdateHUD();
     }
 
@@ -68,14 +66,6 @@ public class Hud : MonoBehaviour
         }
     }*/
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            IncreaseTargetsHit();
-        }
-    }
-
 
     private void UpdateHUD()
     {
@@ -90,5 +80,12 @@ public class Hud : MonoBehaviour
         targetsHit++;
         UpdateHUD();
     }
+
+    public void test()
+    {
+        Debug.Log("test()");
+    }
+
+
 
 }
