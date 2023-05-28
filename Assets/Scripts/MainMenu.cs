@@ -5,7 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  public void NewGame()
+    public bool showCursor;
+
+    private void Start()
+    {
+        UpdateCursorVisibility();
+    }
+
+    private void UpdateCursorVisibility()
+    {
+        Cursor.visible = showCursor;
+        Cursor.lockState = showCursor ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+    public void NewGame()
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log(sceneIndex);
