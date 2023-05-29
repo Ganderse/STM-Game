@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     public Camera fpsCam;
     public float range = 100f;
     public float damage = 100;
-    public float firerate = 0.1f;   //1 second between shots
+    public float firerate = 0.05f;   //1 second between shots
     private float lastShot = 0f;
 
 
@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
             if (target == null)
             {
                 hud.test();
-                hud.UpdateScore(5);
+                //hud.UpdateScore(5);
             }
 
         }

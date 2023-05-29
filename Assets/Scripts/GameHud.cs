@@ -19,7 +19,7 @@ public class GameHud : MonoBehaviour
     //Game Variable
     private float targetsHit = 0f;
     public float timeVar = 0.0f;
-    public int scoreValue = 0;
+    public float scoreValue = 0;
     public float diffValue = 0.0f;
     //Text Components
     TextMeshProUGUI targetsHitText;
@@ -50,7 +50,7 @@ public class GameHud : MonoBehaviour
 
         targetsHitText.text = "Targets Hit : " + targetsHit.ToString();
         timeText.text = "Time : " + Math.Truncate(timeVar) + "s";
-        scoreText.text = "Score : " + scoreValue.ToString();
+        scoreText.text = "Score : " + Math.Truncate(scoreValue).ToString();
         difficultyText.text = "Difficulty : " + diffValue.ToString();
         //Debug.Log(targetsHit.ToString());
     }
@@ -63,11 +63,11 @@ public class GameHud : MonoBehaviour
 
     public void UpdateDifficulty(float updatedDiff)
     {
-        diffValue = updatedDiff;
+        diffValue = 10/updatedDiff; //The higher the value, the higher difficulty
         UpdateHUD();
     }
 
-    public void UpdateScore(int scoreAmount)
+    public void UpdateScore(float scoreAmount)
     {
         scoreValue += scoreAmount;
         UpdateHUD();
