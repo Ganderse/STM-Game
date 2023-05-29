@@ -13,17 +13,19 @@ public class GameHud : MonoBehaviour
     public GameObject targets;
     public GameObject time;
     public GameObject score;
+    public GameObject difficulty;
     //public UnityEngine.UI.Text targetsHitText;
 
     //Game Variable
     private float targetsHit = 0f;
     public float timeVar = 0.0f;
     public int scoreValue = 0;
-
+    public float diffValue = 0.0f;
     //Text Components
     TextMeshProUGUI targetsHitText;
     TextMeshProUGUI timeText;
     TextMeshProUGUI scoreText;
+    TextMeshProUGUI difficultyText;
 
     // Start is called before the first frame update
 
@@ -32,6 +34,7 @@ public class GameHud : MonoBehaviour
         targetsHitText = targets.GetComponent<TextMeshProUGUI>();
         timeText = time.GetComponent<TextMeshProUGUI>();
         scoreText = score.GetComponent<TextMeshProUGUI>();
+        difficultyText = difficulty.GetComponent<TextMeshProUGUI>();
         UpdateHUD();
     }
 
@@ -48,19 +51,25 @@ public class GameHud : MonoBehaviour
         targetsHitText.text = "Targets Hit : " + targetsHit.ToString();
         timeText.text = "Time : " + Math.Truncate(timeVar) + "s";
         scoreText.text = "Score : " + scoreValue.ToString();
+        difficultyText.text = "Difficulty : " + diffValue.ToString();
         //Debug.Log(targetsHit.ToString());
     }
 
     public void IncreaseTargetsHit()
     {
         targetsHit++;
-        scoreValue += 200;
         UpdateHUD();
     }
 
-    public void DecreaseScore()
+    public void UpdateDifficulty(float updatedDiff)
     {
-        scoreValue -= 100;
+        diffValue = updatedDiff;
+        UpdateHUD();
+    }
+
+    public void UpdateScore(int scoreAmount)
+    {
+        scoreValue += scoreAmount;
         UpdateHUD();
     }
 

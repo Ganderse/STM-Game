@@ -5,6 +5,7 @@ public class Target : MonoBehaviour
     [SerializeField] // Add this attribute to make the hud variable visible in the Inspector
     public float health = 50f;
     public GameHud hud;
+    public bool destroyed = false;
 
     void Start()
     {
@@ -21,15 +22,24 @@ public class Target : MonoBehaviour
         }
     }
 
+    public bool IsDestroyed()
+    {
+        return destroyed;
+    }
+
+
+
     //User has shot the target
     void Die()
     {
         hud.IncreaseTargetsHit();
 
+        //Debug.Log(hud.timeVar);
+        destroyed = true;
 
-        Debug.Log(hud.timeVar);
-
-
+        // Access the targetAgesAndStates dictionary from the ReflexSpawner script
+        ReflexSpawner spawner = FindObjectOfType<ReflexSpawner>();
+        spawner.RemoveTargetFromDictionary(gameObject);
 
         Destroy(gameObject);
     }
