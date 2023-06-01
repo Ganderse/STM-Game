@@ -73,5 +73,3 @@ crashlytics-build.properties
 .vscode/settings.json
 .DS_Store
 .DS_Store
-Assets/Prefab/Sphere.prefab
-Assets/Scenes/ReflexScene.unity
