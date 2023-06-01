@@ -28,7 +28,6 @@ public class Target : MonoBehaviour
     }
 
 
-
     //User has shot the target
     void Die()
     {

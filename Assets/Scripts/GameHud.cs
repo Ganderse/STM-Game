@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class GameHud : MonoBehaviour
-{
-
-    
+{  
     //UI Text GameObjects
     public GameObject targets;
     public GameObject time;
@@ -27,10 +27,15 @@ public class GameHud : MonoBehaviour
     TextMeshProUGUI scoreText;
     TextMeshProUGUI difficultyText;
 
+    //public ScoresMenu scoreboard;
+
+
     // Start is called before the first frame update
 
     private void Start()
     {
+        //scoreboard = GameObject.Find("Canvas").GetComponent<ScoresMenu>();
+
         targetsHitText = targets.GetComponent<TextMeshProUGUI>();
         timeText = time.GetComponent<TextMeshProUGUI>();
         scoreText = score.GetComponent<TextMeshProUGUI>();
@@ -42,6 +47,15 @@ public class GameHud : MonoBehaviour
     {
         timeVar += Time.deltaTime;
         UpdateHUD();
+
+        //TIMER
+        if (timeVar >= 25f)
+        {
+            SceneManager.UnloadScene(1);
+
+            SceneManager.LoadScene(2);
+        }
+        
     }
 
 

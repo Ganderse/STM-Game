@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-131986
+  m_Name: pb_Mesh36002
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2629,7 +2629,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1163121634}
-  - {fileID: 1982308731}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2694,72 +2693,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6efe674338ad4a49866fd7e5c2ba6b4, type: 3}
---- !u!1001 &1982308730
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1873036131}
-    m_Modifications:
-    - target: {fileID: 2011250697325498489, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.371
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333614, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254057661462333615, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-      propertyPath: m_Name
-      value: Sphere
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
---- !u!224 &1982308731 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2011250697325498489, guid: b71fe29555c2148a2afa27da435d2a08, type: 3}
-  m_PrefabInstance: {fileID: 1982308730}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998018726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,7 +2862,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -88.30965, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2960,7 +2893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -832, y: 274}
+  m_AnchoredPosition: {x: -825, y: 282.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2069386759
