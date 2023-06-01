@@ -76,8 +76,6 @@ public class ReflexSpawner : MonoBehaviour
     void Update()
     {
         
-
-
         foreach (GameObject target in new List<GameObject>(targetAgesAndStates.Keys))
         {
             // Update the target's age
@@ -89,10 +87,6 @@ public class ReflexSpawner : MonoBehaviour
         }
 
         timer += Time.deltaTime;
-
-
-
-
 
         if (timer >= difficulty)
         {
@@ -106,13 +100,14 @@ public class ReflexSpawner : MonoBehaviour
             timeTargetSpawn = Time.time;
             // Store the target's age and dead state
             targetAgesAndStates.Add(obj, 0);
+<<<<<<< HEAD
             //Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);
 
+=======
+            Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);
+>>>>>>> 0ba0500c4ef64524de17568cfd02ace83ffbc05b
         }
-
     }
-
-    
 
     void CheckTargetAlive(GameObject target)
     {
@@ -145,6 +140,9 @@ public class ReflexSpawner : MonoBehaviour
             targetAgesAndStates.Remove(target);
         }
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0ba0500c4ef64524de17568cfd02ace83ffbc05b
 }
