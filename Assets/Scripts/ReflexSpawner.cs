@@ -70,7 +70,16 @@ public class ReflexSpawner : MonoBehaviour
         Debug.Log("Time to hit:" + difficulty / 3);*/
     }
 
-    
+
+
+    static float NextFloat(float min, float max)
+    {
+        System.Random random = new System.Random();
+        double val = (random.NextDouble() * (max - min) + min);
+        return (float)val;
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -102,7 +111,7 @@ public class ReflexSpawner : MonoBehaviour
             hud.UpdateTotalHit();
             //obj.AddComponent<Target>();
             //obj.transform.localScale
-            obj.transform.position = new Vector3(Random.Range(-2, 2), Random.Range(0.5f, 3), transform.position[2]);
+            obj.transform.position = new Vector3(NextFloat(-2.5f,2.5f), NextFloat(0.5f,5f), transform.position[2]);
             timeTargetSpawn = Time.time;
             // Store the target's age and dead state
             targetAgesAndStates.Add(obj, 0);
