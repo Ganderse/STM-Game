@@ -6,6 +6,8 @@ public class Weapon : MonoBehaviour
     public GameHud hud;
     public ReflexSpawner spawner;
     public Camera fpsCam;
+    public AudioSource source;
+    public AudioClip clip;
     public float range = 100f;
     public float damage = 100;
     public float firerate = 0.05f;   //1 second between shots
@@ -38,6 +40,7 @@ public class Weapon : MonoBehaviour
             if (target != null && Time.time > firerate + lastShot)
             {
                 target.TakeDamage(damage);
+                source.PlayOneShot(clip);
                 lastShot = Time.time;
                 spawner.SetLastHitTime(lastShot);
             }

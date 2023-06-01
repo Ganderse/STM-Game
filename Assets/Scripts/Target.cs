@@ -5,6 +5,8 @@ public class Target : MonoBehaviour
 {
     [SerializeField] // Add this attribute to make the hud variable visible in the Inspector
     public Animations animate;
+    public AudioSource source;
+    public AudioClip clip;
     public float health = 50f;
     public GameHud hud;
     public bool destroyed = false;
@@ -45,6 +47,7 @@ public class Target : MonoBehaviour
         // Access the targetAgesAndStates dictionary from the ReflexSpawner script
         ReflexSpawner spawner = FindObjectOfType<ReflexSpawner>();
         spawner.RemoveTargetFromDictionary(gameObject);
+        source.PlayOneShot(clip);
         StartCoroutine(animate.fadeout());
    
 
