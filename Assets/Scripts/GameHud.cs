@@ -48,14 +48,6 @@ public class GameHud : MonoBehaviour
         timeVar += Time.deltaTime;
         UpdateHUD();
 
-        //TIMER
-        if (timeVar >= 25f)
-        {
-            SceneManager.UnloadScene(1);
-
-            SceneManager.LoadScene(2);
-        }
-        
     }
 
 
