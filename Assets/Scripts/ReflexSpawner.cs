@@ -22,9 +22,11 @@ using UnityEngine;
 
 public class ReflexSpawner : MonoBehaviour
 {
+    private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
     public GameObject Parent;
+    private Material material;
     public float difficulty = 5.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
     public GameHud hud;
     private float score;
@@ -95,16 +97,16 @@ public class ReflexSpawner : MonoBehaviour
         if (timer >= difficulty)
         {
             timer = 0.0f; //restart the timer
-
             //Spawning the target
             GameObject obj = Instantiate(target);
-            obj.AddComponent<Target>();
+            hud.UpdateTotalHit();
+            //obj.AddComponent<Target>();
             //obj.transform.localScale
             obj.transform.position = new Vector3(Random.Range(-2, 2), Random.Range(0.5f, 3), transform.position[2]);
             timeTargetSpawn = Time.time;
             // Store the target's age and dead state
             targetAgesAndStates.Add(obj, 0);
-            Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);
+            //Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);
 
         }
 
@@ -117,7 +119,7 @@ public class ReflexSpawner : MonoBehaviour
         // Check if the target is dead or not
         if (targetAgesAndStates[target] > difficulty) //TODO Change this variable to change the lifetime of the target
         {
-            Debug.Log("Target's age:" + targetAgesAndStates[target]);
+            //Debug.Log("Target's age:" + targetAgesAndStates[target]);
             difficulty += difficulty * 0.1f;
             score = -100;
             hud.UpdateScore(score);
@@ -143,5 +145,6 @@ public class ReflexSpawner : MonoBehaviour
             targetAgesAndStates.Remove(target);
         }
     }
+
 
 }

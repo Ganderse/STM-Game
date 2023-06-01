@@ -18,7 +18,11 @@ public class GameHud : MonoBehaviour
 
     //Game Variable
     private float targetsHit = 0f;
+    private float totalHit = 0f;
     public float timeVar = 0.0f;
+    public int minutes = 0;
+    public int seconds = 0;
+    public string fTime = "";
     public float scoreValue = 0;
     public float diffValue = 0.0f;
     //Text Components
@@ -41,6 +45,9 @@ public class GameHud : MonoBehaviour
     private void Update()
     {
         timeVar += Time.deltaTime;
+        minutes = Mathf.FloorToInt(timeVar / 60F);
+        seconds = Mathf.FloorToInt(timeVar - minutes * 60);
+        fTime = string.Format("{0:0}:{1:00}", minutes, seconds);
         UpdateHUD();
     }
 
@@ -48,10 +55,10 @@ public class GameHud : MonoBehaviour
     private void UpdateHUD()
     {
 
-        targetsHitText.text = "Targets Hit : " + targetsHit.ToString();
-        timeText.text = "Time : " + Math.Truncate(timeVar) + "s";
+        targetsHitText.text = targetsHit.ToString() + "/" + totalHit.ToString();
+        timeText.text = fTime;// "Time : " + Math.Truncate(timeVar) + "s";
         scoreText.text = "Score : " + Math.Truncate(scoreValue).ToString();
-        difficultyText.text = "Difficulty : " + diffValue.ToString();
+        difficultyText.text = "Difficulty : " + Mathf.RoundToInt(diffValue).ToString();
         //Debug.Log(targetsHit.ToString());
     }
 
@@ -73,9 +80,10 @@ public class GameHud : MonoBehaviour
         UpdateHUD();
     }
 
-    public void test()
+    public void UpdateTotalHit()
     {
-        Debug.Log("test()");
+        totalHit++;
+        UpdateHUD();
     }
 
 

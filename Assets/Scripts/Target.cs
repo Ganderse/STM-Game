@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Target : MonoBehaviour
 {
     [SerializeField] // Add this attribute to make the hud variable visible in the Inspector
+    public Animations animate;
     public float health = 50f;
     public GameHud hud;
     public bool destroyed = false;
@@ -10,6 +12,9 @@ public class Target : MonoBehaviour
     void Start()
     {
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
+        animate = gameObject.GetComponent<Animations>();
+
+
     }
 
     public void TakeDamage(float damage)
@@ -40,8 +45,11 @@ public class Target : MonoBehaviour
         // Access the targetAgesAndStates dictionary from the ReflexSpawner script
         ReflexSpawner spawner = FindObjectOfType<ReflexSpawner>();
         spawner.RemoveTargetFromDictionary(gameObject);
+        StartCoroutine(animate.fadeout());
+   
 
-        Destroy(gameObject);
     }
     
+    
+
 }

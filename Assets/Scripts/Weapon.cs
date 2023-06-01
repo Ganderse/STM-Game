@@ -5,7 +5,6 @@ public class Weapon : MonoBehaviour
 {
     public GameHud hud;
     public ReflexSpawner spawner;
-    public UnityEvent OnGunShoot;
     public Camera fpsCam;
     public float range = 100f;
     public float damage = 100;
@@ -43,11 +42,6 @@ public class Weapon : MonoBehaviour
                 spawner.SetLastHitTime(lastShot);
             }
 
-            if (target == null)
-            {
-                hud.test();
-                //hud.UpdateScore(5);
-            }
 
         }
     }
