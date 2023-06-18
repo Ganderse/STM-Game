@@ -67,6 +67,30 @@ public class QuickMathSpawner : MonoBehaviour
             }
 
         }
+
+        public string toString()
+        {
+            char operatorr = '#';
+            switch (oOperator)
+            {
+                case OperationType.PLUS:
+                    operatorr = '+';
+                    break;
+                case OperationType.MINUS:
+                    operatorr = '-';
+                    break;
+                case OperationType.TIMES:
+                    operatorr = '*';
+                    break;
+                case OperationType.DIV:
+                    operatorr = '/';
+                    break;
+            }
+
+            return LeftOperand.ToString() + operatorr + RightOperand.ToString();
+
+        }
+
     }
 
     private Animations animate;
@@ -130,14 +154,12 @@ public class QuickMathSpawner : MonoBehaviour
 
         //int[][] QuestionAndAnswer = new int[] { };
 
-
-
         //TODO Adjust the difficulty
         if (difficulty <= 7.0f)
         {
 
             //ADDITION SUBSTRACTION {+, -}
-            QuestionOperator = rnd.Next(2);
+            QuestionOperator = rnd.Next(1);
 
             switch (QuestionOperator)
             {
@@ -172,7 +194,7 @@ public class QuickMathSpawner : MonoBehaviour
                     break;
             }
 
-            Debug.Log("Question and Answer" + QuestionsAndAnswers);
+            //Debug.Log("Question and Answer" + QuestionsAndAnswers);
             
 
 
@@ -188,7 +210,7 @@ public class QuickMathSpawner : MonoBehaviour
             //HARDER
         }*/
 
-             
+        Debug.Log("Created a question " + QuestionsAndAnswers[0].toString()); 
     }
 
     public void QuestionDelete(int index)
@@ -280,18 +302,20 @@ public class QuickMathSpawner : MonoBehaviour
         {
             /*TODO CURRENT TASK: WHEN INITATING, WE NEED TO PASS THE QUESTION AND ANSWER TO THE TARGET. THE TARGET HAS A BOOL CORRECTANSWER. */
             QuestionCreator();
+            
+            hud.quesiton = QuestionsAndAnswers[0].toString();
 
-            hud.UpdateTotalHit();
+            hud.UpdateTotalHit(); 
             //obj.AddComponent<Target>();
             //obj.transform.localScale
 
             //Spawning the targets
             GameObject firstTarget = Instantiate(target);
-            firstTarget.transform.position = new Vector3(-2, 2, transform.position[2]);
-            Debug.Log("Spawning first target");
+            firstTarget.transform.position = new Vector3(-1.7f, 1.4f, transform.position[2]);
+            //Debug.Log("Spawning first target");
 
             GameObject secondTarget = Instantiate(target);
-            secondTarget.transform.position = new Vector3(2, 2, transform.position[2]);
+            secondTarget.transform.position = new Vector3(1.5f, 1.4f, transform.position[2]);
 
             
             timeTargetSpawn = Time.time;
@@ -325,11 +349,12 @@ public class QuickMathSpawner : MonoBehaviour
 
     public void DestroyAllTargets()
     {
-        Debug.Log("Destroying all targets");
+//        Debug.Log("Destroying all targets");
         foreach (GameObject target in new List<GameObject>(targetAgesAndStates.Keys))
         {
             targetAgesAndStates.Remove(target);
             DestroyImmediate(target);
+            hud.quesiton = "";
 
         }
         timeSinceLastQuestion = 0;

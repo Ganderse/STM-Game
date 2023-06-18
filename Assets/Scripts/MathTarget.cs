@@ -61,7 +61,7 @@ public class MathTarget : MonoBehaviour
 
         givenAnswer = targetQuestion.AnswerCandidate;
         issCorrect = targetQuestion.isCorrect;
-        Debug.Log("My current answer is:" + givenAnswer);
+//        Debug.Log("My current answer is:" + givenAnswer);
 
         targetAnswerText.text = givenAnswer.ToString();
 
@@ -102,7 +102,7 @@ public class MathTarget : MonoBehaviour
         // Access the targetAgesAndStates dictionary from the QuickMathSpawner script
         QuickMathSpawner spawner = FindObjectOfType<QuickMathSpawner>();
         spawner.RemoveTargetFromDictionary(gameObject);
-        Debug.Log("Dying, next line destroys all targets");
+//        Debug.Log("Dying, next line destroys all targets");
         Destroy(gameObject);
         spawner.DestroyAllTargets();
         source.PlayOneShot(clip);

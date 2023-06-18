@@ -41,7 +41,7 @@ public class MathWeapon : MonoBehaviour
             //Debug.Log(target);
             if (target != null && Time.time > firerate + lastShot)
             {
-                Debug.Log("Shot game object " + target);
+//                Debug.Log("Shot game object " + target);
                 spawner.AdjustDifficulty(target.issCorrect);
                 target.TakeDamage(damage);
 

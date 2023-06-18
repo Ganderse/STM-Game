@@ -14,6 +14,7 @@ public class GameHud : MonoBehaviour
     public GameObject time;
     public GameObject score;
     public GameObject difficulty;
+    public GameObject question;
     //public UnityEngine.UI.Text targetsHitText;
 
     //Game Variable
@@ -25,11 +26,13 @@ public class GameHud : MonoBehaviour
     public string fTime = "";
     public float scoreValue = 0;
     public float diffValue = 0.0f;
+    public string quesiton { get; set; }
     //Text Components
     TextMeshProUGUI targetsHitText;
     TextMeshProUGUI timeText;
     TextMeshProUGUI scoreText;
     TextMeshProUGUI difficultyText;
+    TextMeshProUGUI questionText;
 
     // Start is called before the first frame update
 
@@ -39,6 +42,7 @@ public class GameHud : MonoBehaviour
         timeText = time.GetComponent<TextMeshProUGUI>();
         scoreText = score.GetComponent<TextMeshProUGUI>();
         difficultyText = difficulty.GetComponent<TextMeshProUGUI>();
+        questionText = question.GetComponent<TextMeshProUGUI>();
         UpdateHUD();
     }
 
@@ -54,13 +58,14 @@ public class GameHud : MonoBehaviour
 
     private void UpdateHUD()
     {
-
+        questionText.text = quesiton;
         targetsHitText.text = targetsHit.ToString() + "/" + totalHit.ToString();
         timeText.text = fTime;// "Time : " + Math.Truncate(timeVar) + "s";
         scoreText.text = "Score : " + Math.Truncate(scoreValue).ToString();
         difficultyText.text = "Difficulty : " + Mathf.RoundToInt(diffValue).ToString();
         //Debug.Log(targetsHit.ToString());
     }
+
 
     public void IncreaseTargetsHit()
     {
