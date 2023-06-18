@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Weapon : MonoBehaviour
+public class MathWeapon : MonoBehaviour
 {
     public GameHud hud;
-    public ReflexSpawner spawner;
+    public QuickMathSpawner spawner;
     public Camera fpsCam;
     public AudioSource source;
     public AudioClip clip;
@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
+        spawner = FindObjectOfType<QuickMathSpawner>();
+
     }
 
     // Update is called once per frame
@@ -35,12 +37,16 @@ public class Weapon : MonoBehaviour
         RaycastHit hitinfo;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hitinfo, range))
         {
-            Target target = hitinfo.transform.GetComponent<Target>();
+            MathTarget target = hitinfo.transform.GetComponent<MathTarget>();
             //Debug.Log(target);
             if (target != null && Time.time > firerate + lastShot)
             {
-              
+//                Debug.Log("Shot game object " + target);
+                spawner.AdjustDifficulty(target.issCorrect);
                 target.TakeDamage(damage);
+
+
+
                 source.PlayOneShot(clip);
                 lastShot = Time.time;
                 spawner.SetLastHitTime(lastShot);
