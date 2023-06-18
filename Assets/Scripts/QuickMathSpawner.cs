@@ -72,7 +72,7 @@ public class QuickMathSpawner : MonoBehaviour
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
-    public GameObject Parent;
+    //public GameObject Parent;
     private Material material;
     private float difficulty = 5.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
     public GameHud hud;
@@ -275,11 +275,11 @@ public class QuickMathSpawner : MonoBehaviour
 
 
         //timer += Time.deltaTime;
-        Debug.Log("number of targets : " + targetAgesAndStates.Count);
+        //Debug.Log("number of targets : " + targetAgesAndStates.Count);
         if (targetAgesAndStates.Count == 0 && timeSinceLastQuestion >= 2.0f)
         {
             /*TODO CURRENT TASK: WHEN INITATING, WE NEED TO PASS THE QUESTION AND ANSWER TO THE TARGET. THE TARGET HAS A BOOL CORRECTANSWER. */
-
+            QuestionCreator();
 
             hud.UpdateTotalHit();
             //obj.AddComponent<Target>();

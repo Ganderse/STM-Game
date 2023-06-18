@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using static QuickMathSpawner;
+using TMPro;
+
 
 public class MathTarget : MonoBehaviour
 {
@@ -16,14 +18,26 @@ public class MathTarget : MonoBehaviour
     //public QuickMathSpawner spawner;
     public bool destroyed = false;
     public bool issCorrect = false;   //Bool to determine if it was the right answer or not
-    private int givenAnswer;
+
+//Game Variable
+
+    public int givenAnswer;
     //private IDictionary<int, int[]> questions = new Dictionary<int, int[]>();
+
+    //public GameObject targetAnswer;
+
+    
+    //Text Components
+    public TMP_Text targetAnswerText;
+    // to put the text on the screen do : targetAnswerText.text;
+
 
 
     void Start()
     {
         QuickMathSpawner.Operation targetQuestion = new QuickMathSpawner.Operation { };
         System.Random rnd = new System.Random();
+        //targetAnswerText = targetAnswer.GetComponentInChildren<TextMeshProUGUI>();
 
 
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
@@ -47,7 +61,15 @@ public class MathTarget : MonoBehaviour
 
         givenAnswer = targetQuestion.AnswerCandidate;
         issCorrect = targetQuestion.isCorrect;
+        Debug.Log("My current answer is:" + givenAnswer);
+
+        targetAnswerText.text = givenAnswer.ToString();
+
     }
+    /*
+    private void Update()
+    {
+    }*/
 
 
 
