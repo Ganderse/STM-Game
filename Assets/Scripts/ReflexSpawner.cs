@@ -84,7 +84,6 @@ public class ReflexSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
 
         foreach (GameObject target in new List<GameObject>(targetAgesAndStates.Keys))

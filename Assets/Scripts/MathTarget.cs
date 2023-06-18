@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
+using static QuickMathSpawner;
 
 public class MathTarget : MonoBehaviour
 {
@@ -11,22 +12,45 @@ public class MathTarget : MonoBehaviour
     public AudioClip clip;
     public float health = 50f;
     public GameHud hud;
+    private QuickMathSpawner spawner;
     //public QuickMathSpawner spawner;
     public bool destroyed = false;
-    public bool correct = false;   //Bool to determine if it was the right answer or not
-    public string answer;
-    private IDictionary<int, int[]> questions = new Dictionary<int, int[]>();
+    public bool issCorrect = false;   //Bool to determine if it was the right answer or not
+    private int givenAnswer;
+    //private IDictionary<int, int[]> questions = new Dictionary<int, int[]>();
 
 
     void Start()
     {
+        QuickMathSpawner.Operation targetQuestion = new QuickMathSpawner.Operation { };
+        System.Random rnd = new System.Random();
+
 
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
         animate = gameObject.GetComponent<Animations>();
         //spawner = GameObject.Find("Spawner").GetComponent<QuickMathSpawner>();
-        QuickMathSpawner spawner = FindObjectOfType<QuickMathSpawner>();
-        questions = spawner.QuestionCreator();
+        spawner = FindObjectOfType<QuickMathSpawner>();
+
+        //questions = spawner.QuestionsAndAnswers;
+
+        //questions = spawner.QuestionCreator();
+
+        if (spawner.QuestionsAndAnswers.Count > 0)
+        {
+            int questionIndex = rnd.Next(0, spawner.QuestionsAndAnswers.Count);
+            targetQuestion = spawner.QuestionsAndAnswers[questionIndex];
+            spawner.QuestionDelete(questionIndex);
+        } else
+        {
+            Debug.Log("No more questions in list");
+        }
+
+        givenAnswer = targetQuestion.AnswerCandidate;
+        issCorrect = targetQuestion.isCorrect;
     }
+
+
+
 
     public void TakeDamage(float damage)
     {
@@ -53,11 +77,15 @@ public class MathTarget : MonoBehaviour
         //Debug.Log(hud.timeVar);
         destroyed = true;
 
-        // Access the targetAgesAndStates dictionary from the ReflexSpawner script
-        ReflexSpawner spawner = FindObjectOfType<ReflexSpawner>();
+        // Access the targetAgesAndStates dictionary from the QuickMathSpawner script
+        QuickMathSpawner spawner = FindObjectOfType<QuickMathSpawner>();
         spawner.RemoveTargetFromDictionary(gameObject);
+        Debug.Log("Dying, next line destroys all targets");
+        Destroy(gameObject);
+        spawner.DestroyAllTargets();
         source.PlayOneShot(clip);
-        StartCoroutine(animate.fadeout());
+
+        //StartCoroutine(animate.fadeout());
 
 
     }

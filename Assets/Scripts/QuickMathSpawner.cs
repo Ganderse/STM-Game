@@ -21,26 +21,80 @@ using System.Collections;
 
 public class QuickMathSpawner : MonoBehaviour
 {
+
+    public enum OperationType
+    {
+        PLUS,
+        MINUS,
+        TIMES,
+        DIV
+    }
+
+    public class Operation
+    {
+        public int LeftOperand { get; set; }
+        public int RightOperand { get; set; }
+
+        public OperationType oOperator { get; set; }
+
+        public int AnswerCandidate { get; set; }
+        public int CorrectAnswer { get
+            {
+                int returnValue = 0;
+                switch (oOperator)
+                {
+                    case OperationType.PLUS:
+                        returnValue = LeftOperand + RightOperand;
+                        break;
+                    case OperationType.MINUS:
+                        returnValue = LeftOperand - RightOperand ;
+                        break;
+                    case OperationType.TIMES:
+                        returnValue = LeftOperand * RightOperand;
+                        break;
+                    case OperationType.DIV:
+                        returnValue = LeftOperand / RightOperand;
+                        break;
+                }
+                return returnValue;
+            } }
+        
+
+        public bool isCorrect {
+            get
+            {
+                return CorrectAnswer == AnswerCandidate;
+            }
+
+        }
+    }
+
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
     public GameObject Parent;
     private Material material;
-    public float difficulty = 5.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
+    private float difficulty = 5.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
     public GameHud hud;
     private float score;
     private float timeLastHit = 0.0f;
     private float timeTargetSpawn = 0.0f;
     private float timeBetweenSpawnAndHit = 0.0f;
+    private float timeSinceLastQuestion = 0.0f;
     private Dictionary<GameObject, float> targetAgesAndStates = new Dictionary<GameObject, float>();
     private string[] easyList = { "+", "-" };
     private string[] middleList = { "*", "/" };
     private int QuestionOperator;
 
+    public List<Operation> QuestionsAndAnswers { get; set; }
+    //public IDictionary<int, int[]> QuestionAndAnswers  { get; set; }
+
+
     private void Start()
     {
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
         hud.UpdateDifficulty(difficulty);
+        QuestionsAndAnswers = new List<Operation> { };
 
     }
 
@@ -48,7 +102,7 @@ public class QuickMathSpawner : MonoBehaviour
 
     // Determines what question the game is gonna ask
 
-    public IDictionary<int,int[]> QuestionCreator()
+    public void QuestionCreator()
     {
         System.Random rnd = new System.Random();
         int Value1;
@@ -58,7 +112,6 @@ public class QuickMathSpawner : MonoBehaviour
         int Answer;
         int fakeAnswer;
 
-        IDictionary<int, int[]> QuestionAndAnswers = new Dictionary<int, int[]>;
         //FORMAT OF THE DICTIONARY
         //VALUE1
 
@@ -94,11 +147,19 @@ public class QuickMathSpawner : MonoBehaviour
                     //Correct Value 2
                     Value2 = rnd.Next(100);
                     //Wrong value 1
-                    Value3 = rnd.Next(11);
+                    Value3 = rnd.Next(-11,11);
                     fakeAnswer = Value1 + Value1 + Value3;
                     Answer = Value1 + Value2;
-                    QuestionAndAnswers.Add(1,new int[]{ Value1, 0, Value2, Answer, 1 });
-                    QuestionAndAnswers.Add(2, new int[] { Value1, 0, Value2, fakeAnswer , 0 });
+                    QuestionsAndAnswers.Add(new Operation {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.PLUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer }) ;
+                    QuestionsAndAnswers.Add(new Operation {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.PLUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer });
                     break;
 
                 case 1:
@@ -111,14 +172,12 @@ public class QuickMathSpawner : MonoBehaviour
                     break;
             }
 
-            Debug.Log("Question and Answer" + QuestionAndAnswer);
-            return QuestionAndAnswer;
-
+            Debug.Log("Question and Answer" + QuestionsAndAnswers);
+            
 
 
         }
         //TODO REMOVE TEMP *************************
-        else return null;
         //*******************
 
         /*else if (difficulty)
@@ -130,6 +189,11 @@ public class QuickMathSpawner : MonoBehaviour
         }*/
 
              
+    }
+
+    public void QuestionDelete(int index)
+    {
+        QuestionsAndAnswers.RemoveAt(index);
     }
 
 
@@ -169,12 +233,33 @@ public class QuickMathSpawner : MonoBehaviour
         return (float)val;
     }
 
-    public 
+    public void AdjustDifficulty(bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            difficulty += 1;
+        }
+        else difficulty -= 1;
+    }
+
+    
+
 
     // Update is called once per frame
     void Update()
     {
 
+
+        timeSinceLastQuestion += Time.deltaTime;
+
+
+        //Debug.Log("Time since last Question :" + timeSinceLastQuestion);
+
+
+
+        ///////////////////////////////////////////////////////////////
+        ///Age of the target
+        /*
         foreach (GameObject target in new List<GameObject>(targetAgesAndStates.Keys))
         {
             // Update the target's age
@@ -182,36 +267,38 @@ public class QuickMathSpawner : MonoBehaviour
             // Check if the target is dead or not
             CheckTargetAlive(target);
         }
-
+        */
         //Calls the question creator
-        QuestionCreator(difficulty);
+        //QuestionCreator(difficulty);
+
+        ///////////////////////////////////////////////////////////////
 
 
-
-
-        timer += Time.deltaTime;
-
-        if (timer >= difficulty)
+        //timer += Time.deltaTime;
+        Debug.Log("number of targets : " + targetAgesAndStates.Count);
+        if (targetAgesAndStates.Count == 0 && timeSinceLastQuestion >= 2.0f)
         {
-            timer = 0.0f; //restart the timer
-            //Spawning the target
-            GameObject obj = Instantiate(target);
-            /*TODO CURRENT TASK: WHEN INITATING, WE NEED TO PASS THE QUESTION AND ANSWER TO THE TARGET. THE TARGET HAS A BOOL CORRECTANSWER. 
-             
-             
-             
-             */
-
+            /*TODO CURRENT TASK: WHEN INITATING, WE NEED TO PASS THE QUESTION AND ANSWER TO THE TARGET. THE TARGET HAS A BOOL CORRECTANSWER. */
 
 
             hud.UpdateTotalHit();
             //obj.AddComponent<Target>();
             //obj.transform.localScale
-            obj.transform.position = new Vector3(NextFloat(-2.5f, 2.5f), NextFloat(0.5f, 5f), transform.position[2]);
+
+            //Spawning the targets
+            GameObject firstTarget = Instantiate(target);
+            firstTarget.transform.position = new Vector3(-2, 2, transform.position[2]);
+            Debug.Log("Spawning first target");
+
+            GameObject secondTarget = Instantiate(target);
+            secondTarget.transform.position = new Vector3(2, 2, transform.position[2]);
+
+            
             timeTargetSpawn = Time.time;
             // Store the target's age and dead state
-            targetAgesAndStates.Add(obj, 0);
-            //Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);
+            targetAgesAndStates.Add(firstTarget, 0);
+            targetAgesAndStates.Add(secondTarget, 0);
+            //Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);*/
         }
     }
 
@@ -220,26 +307,13 @@ public class QuickMathSpawner : MonoBehaviour
     void CheckTargetAlive(GameObject target)
     {
         // Check if the target is dead or not
-        if (targetAgesAndStates[target] > difficulty) //TODO Change this variable to change the lifetime of the target
+        if (target.GetComponent<MathTarget>().IsDestroyed())
         {
-            //Debug.Log("Target's age:" + targetAgesAndStates[target]);
-            difficulty += difficulty * 0.1f;
-            score = -100;
-            hud.UpdateScore(score);
-            hud.UpdateDifficulty(difficulty);
             Destroy(target);
             targetAgesAndStates.Remove(target); // Remove the target from the dictionary
         }
-        else
-        {
-            // Update the target's age and dead state
-            targetAgesAndStates[target] += Time.deltaTime;
-            if (target.GetComponent<Target>().IsDestroyed())
-            {
-                targetAgesAndStates[target] = 0.0f;
-            }
-        }
     }
+
 
     public void RemoveTargetFromDictionary(GameObject target)
     {
@@ -248,6 +322,19 @@ public class QuickMathSpawner : MonoBehaviour
             targetAgesAndStates.Remove(target);
         }
     }
+
+    public void DestroyAllTargets()
+    {
+        Debug.Log("Destroying all targets");
+        foreach (GameObject target in new List<GameObject>(targetAgesAndStates.Keys))
+        {
+            targetAgesAndStates.Remove(target);
+            DestroyImmediate(target);
+
+        }
+        timeSinceLastQuestion = 0;
+    }
+
 
 
 }
