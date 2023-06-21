@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class GameHud : MonoBehaviour
 {
@@ -75,8 +77,13 @@ public class GameHud : MonoBehaviour
         {
             difficultyText.text = "Difficulty : " + Mathf.RoundToInt(diffValue).ToString();
         }
-        mathDifficultyText.text = "Difficulty : " + Mathf.RoundToInt(MathDiff).ToString();
-        mathLevelText.text = "Level : " + MathLevelValue.ToString();
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            mathDifficultyText.text = "Difficulty : " + Mathf.RoundToInt(MathDiff).ToString();
+            mathLevelText.text = "Level : " + MathLevelValue.ToString();
+        }
+
+        
         //Debug.Log(targetsHit.ToString());
     }
 
