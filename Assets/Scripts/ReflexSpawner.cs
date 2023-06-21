@@ -94,7 +94,7 @@ public class ReflexSpawner : MonoBehaviour
     {
         seconds = hud.seconds;
         minutes = hud.minutes;
-        if (seconds >= timeLimit)
+        if (minutes >= timeLimit)
         {
             hud.endgame.GetComponent<TextMeshProUGUI>().text = "Time's up!";
             hud.endgame.SetActive(true); 

@@ -454,7 +454,7 @@ public class QuickMathSpawner : MonoBehaviour
     void Update()
     {
 
-        if (questionCount > 2)
+        if (questionCount > questionLimit)
         {
             hud.endgame.GetComponent<TextMeshProUGUI>().text = "No more Questions!";
             hud.endgame.SetActive(true);
