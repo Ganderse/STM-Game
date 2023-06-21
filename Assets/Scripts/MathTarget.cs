@@ -99,12 +99,31 @@ public class MathTarget : MonoBehaviour
         //Debug.Log(hud.timeVar);
         destroyed = true;
 
+        
+
         // Access the targetAgesAndStates dictionary from the QuickMathSpawner script
         QuickMathSpawner spawner = FindObjectOfType<QuickMathSpawner>();
+
+
+        //Change the difficulty depending on answer
+        if (issCorrect)
+        {
+            spawner.ChangeDifficulty(1.0f);
+        } else
+        {
+            spawner.ChangeDifficulty(-1.0f);
+        }
+
+        //Removing current object from Dictionary with all the targets
         spawner.RemoveTargetFromDictionary(gameObject);
-//        Debug.Log("Dying, next line destroys all targets");
+
+        //Destroys the current game object
         Destroy(gameObject);
+
+        //Destroys all the other targets
         spawner.DestroyAllTargets();
+
+        //Plays the shooting sound effect
         source.PlayOneShot(clip);
 
         //StartCoroutine(animate.fadeout());

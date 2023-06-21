@@ -15,6 +15,8 @@ public class GameHud : MonoBehaviour
     public GameObject score;
     public GameObject difficulty;
     public GameObject question;
+    public GameObject MathDifficulty;
+    public GameObject MathLevel;
     //public UnityEngine.UI.Text targetsHitText;
 
     //Game Variable
@@ -26,6 +28,8 @@ public class GameHud : MonoBehaviour
     public string fTime = "";
     public float scoreValue = 0;
     public float diffValue = 0.0f;
+    public float MathDiff;
+    public int MathLevelValue;
     public string quesiton { get; set; }
     //Text Components
     TextMeshProUGUI targetsHitText;
@@ -33,6 +37,8 @@ public class GameHud : MonoBehaviour
     TextMeshProUGUI scoreText;
     TextMeshProUGUI difficultyText;
     TextMeshProUGUI questionText;
+    TextMeshProUGUI mathLevelText;
+    TextMeshProUGUI mathDifficultyText;
 
     // Start is called before the first frame update
 
@@ -43,6 +49,8 @@ public class GameHud : MonoBehaviour
         scoreText = score.GetComponent<TextMeshProUGUI>();
         difficultyText = difficulty.GetComponent<TextMeshProUGUI>();
         questionText = question.GetComponent<TextMeshProUGUI>();
+        mathDifficultyText = MathDifficulty.GetComponent<TextMeshProUGUI>();
+        mathLevelText = MathLevel.GetComponent<TextMeshProUGUI>(); 
         UpdateHUD();
     }
 
@@ -62,7 +70,13 @@ public class GameHud : MonoBehaviour
         targetsHitText.text = targetsHit.ToString() + "/" + totalHit.ToString();
         timeText.text = fTime;// "Time : " + Math.Truncate(timeVar) + "s";
         scoreText.text = "Score : " + Math.Truncate(scoreValue).ToString();
-        difficultyText.text = "Difficulty : " + Mathf.RoundToInt(diffValue).ToString();
+
+        if (diffValue >= 1)
+        {
+            difficultyText.text = "Difficulty : " + Mathf.RoundToInt(diffValue).ToString();
+        }
+        mathDifficultyText.text = "Difficulty : " + Mathf.RoundToInt(MathDiff).ToString();
+        mathLevelText.text = "Level : " + MathLevelValue.ToString();
         //Debug.Log(targetsHit.ToString());
     }
 
@@ -70,6 +84,18 @@ public class GameHud : MonoBehaviour
     public void IncreaseTargetsHit()
     {
         targetsHit++;
+        UpdateHUD();
+    }
+
+    public void UpdateMathDifficulty(float updatedDiff)
+    {
+        MathDiff = updatedDiff;
+        UpdateHUD();
+    }
+
+    public void UpdateLevel(int updatedLevel)
+    {
+        MathLevelValue = updatedLevel;
         UpdateHUD();
     }
 

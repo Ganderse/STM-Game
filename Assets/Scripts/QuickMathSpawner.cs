@@ -4,6 +4,13 @@ using System.Collections;
 
 
 /*
+ * LEVEL 1 ADDITION SUBSTRACTION between numbers => 20
+ * LEVEL 2 ADDITION SUBSTRACTION between numbers => 100
+ * LEVEL 3 MULTIPLICATION between numbers => 12
+ * LEVEL 4 EVERYTHING TOGETHER
+ * LEVEL 5
+ * 
+ * 
         The difficulty will change like this :
 
         Succesful target hit -> Score + 20 + (Multiplier * 20)
@@ -98,7 +105,8 @@ public class QuickMathSpawner : MonoBehaviour
     public GameObject target;
     //public GameObject Parent;
     private Material material;
-    private float difficulty = 5.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
+    private float difficulty = 1.0f; //The higher the number, the lower the difficulty. The difficulty corresponds to the time between spawns of the target
+    private int level;
     public GameHud hud;
     private float score;
     private float timeLastHit = 0.0f;
@@ -117,7 +125,7 @@ public class QuickMathSpawner : MonoBehaviour
     private void Start()
     {
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
-        hud.UpdateDifficulty(difficulty);
+        hud.UpdateMathDifficulty(difficulty);
         QuestionsAndAnswers = new List<Operation> { };
 
     }
@@ -132,7 +140,6 @@ public class QuickMathSpawner : MonoBehaviour
         int Value1;
         int Value2;
         int Value3;
-        int Value4;
         int Answer;
         int fakeAnswer;
 
@@ -152,14 +159,73 @@ public class QuickMathSpawner : MonoBehaviour
         //0    ,    1
 
 
-        //int[][] QuestionAndAnswer = new int[] { };
 
-        //TODO Adjust the difficulty
-        if (difficulty <= 7.0f)
+        //LEVEL 1
+        if (difficulty <= 3.0f)
+        {
+            //ADDITION SUBSTRACTION {+, -}
+            QuestionOperator = rnd.Next(2);
+            level = 1;
+
+            switch (QuestionOperator)
+            {
+                case 0:
+                    //Correct value 1
+                    Value1 = rnd.Next(20);
+                    //Correct Value 2
+                    Value2 = rnd.Next(20);
+                    //Wrong value 1
+                    Value3 = rnd.Next(-6, 6);
+                    fakeAnswer = Value1 + Value2 + Value3;
+                    Answer = Value1 + Value2;
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.PLUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.PLUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer
+                    });
+                    break;
+
+                case 1:
+                    Value1 = rnd.Next(20);
+                    Value2 = rnd.Next(20);
+                    Value3 = rnd.Next(-6, 6);
+                    fakeAnswer = Value1 + Value2 + Value3;
+                    Answer = Value1 - Value2;
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.MINUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.MINUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
+        //LEVEL 2
+        else if (difficulty <= 8.0f)
         {
 
             //ADDITION SUBSTRACTION {+, -}
-            QuestionOperator = rnd.Next(1);
+            QuestionOperator = rnd.Next(2);
+            level = 2;
 
             switch (QuestionOperator)
             {
@@ -169,49 +235,161 @@ public class QuickMathSpawner : MonoBehaviour
                     //Correct Value 2
                     Value2 = rnd.Next(100);
                     //Wrong value 1
-                    Value3 = rnd.Next(-11,11);
-                    fakeAnswer = Value1 + Value1 + Value3;
+                    Value3 = rnd.Next(-11, 11);
+                    fakeAnswer = Value1 + Value2 + Value3;
                     Answer = Value1 + Value2;
-                    QuestionsAndAnswers.Add(new Operation {
+                    QuestionsAndAnswers.Add(new Operation
+                    {
                         LeftOperand = Value1,
                         oOperator = OperationType.PLUS,
                         RightOperand = Value2,
-                        AnswerCandidate = Answer }) ;
-                    QuestionsAndAnswers.Add(new Operation {
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
                         LeftOperand = Value1,
                         oOperator = OperationType.PLUS,
                         RightOperand = Value2,
-                        AnswerCandidate = fakeAnswer });
+                        AnswerCandidate = fakeAnswer
+                    });
                     break;
 
                 case 1:
                     Value1 = rnd.Next(100);
                     Value2 = rnd.Next(100);
+                    Value3 = rnd.Next(-11, 11);
+                    fakeAnswer = Value1 - Value2 + Value3;
                     Answer = Value1 - Value2;
-                    //QuestionAndAnswer = new int[] { Value1, 1, Value2, Answer };
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.MINUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.MINUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer
+                    });
                     break;
                 default:
                     break;
             }
 
-            //Debug.Log("Question and Answer" + QuestionsAndAnswers);
-            
+        }
+        //LEVEL 3 - MULTIPLICATION
+        else if (difficulty <= 15)
+        {
+            level = 3;
 
+            Value1 = rnd.Next(13);
+            Value2 = rnd.Next(13);
+            Value3 = rnd.Next(-5, 6);
+            fakeAnswer = Value1 * Value2 + Value3;
+            Answer = Value1 * Value2;
+            QuestionsAndAnswers.Add(new Operation
+            {
+                LeftOperand = Value1,
+                oOperator = OperationType.TIMES,
+                RightOperand = Value2,
+                AnswerCandidate = Answer
+            });
+            QuestionsAndAnswers.Add(new Operation
+            {
+                LeftOperand = Value1,
+                oOperator = OperationType.TIMES,
+                RightOperand = Value2,
+                AnswerCandidate = fakeAnswer
+            });
 
         }
-        //TODO REMOVE TEMP *************************
-        //*******************
-
-        /*else if (difficulty)
+        else
         {
-            //MULTIPLICATION
-        } else if (difficulty)
-        {
-            //HARDER
-        }*/
+            //ADDITION SUBSTRACTION {+, -}
+            QuestionOperator = rnd.Next(3);
+            level = 4;
 
-        Debug.Log("Created a question " + QuestionsAndAnswers[0].toString()); 
-    }
+            switch (QuestionOperator)
+            {
+                case 0:
+                    //Correct value 1
+                    Value1 = rnd.Next(100);
+                    //Correct Value 2
+                    Value2 = rnd.Next(100);
+                    //Wrong value 1
+                    Value3 = rnd.Next(-11, 11);
+                    fakeAnswer = Value1 + Value2 + Value3;
+                    Answer = Value1 + Value2;
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.PLUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.PLUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer
+                    });
+                    break;
+
+                case 1:
+                    Value1 = rnd.Next(100);
+                    Value2 = rnd.Next(100);
+                    Value3 = rnd.Next(-11, 11);
+                    fakeAnswer = Value1 - Value2 + Value3;
+                    Answer = Value1 - Value2;
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.MINUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.MINUS,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer
+                    });
+                    break;
+                case 2:
+                    Value1 = rnd.Next(13);
+                    Value2 = rnd.Next(13);
+                    Value3 = rnd.Next(-5, 6);
+                    fakeAnswer = Value1 * Value2 + Value3;
+                    Answer = Value1 * Value2;
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.TIMES,
+                        RightOperand = Value2,
+                        AnswerCandidate = Answer
+                    });
+                    QuestionsAndAnswers.Add(new Operation
+                    {
+                        LeftOperand = Value1,
+                        oOperator = OperationType.TIMES,
+                        RightOperand = Value2,
+                        AnswerCandidate = fakeAnswer
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+        Debug.Log("Created a question " + QuestionsAndAnswers[0].toString());
+        }
 
     public void QuestionDelete(int index)
     {
@@ -237,7 +415,8 @@ public class QuickMathSpawner : MonoBehaviour
 
 
         //Update the UI
-        hud.UpdateDifficulty(difficulty);
+        hud.UpdateMathDifficulty(difficulty);
+        hud.UpdateLevel(level);
         hud.UpdateScore(score);
         /*
         Debug.Log("Difficulty : " + difficulty);
@@ -324,6 +503,11 @@ public class QuickMathSpawner : MonoBehaviour
             targetAgesAndStates.Add(secondTarget, 0);
             //Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);*/
         }
+    }
+
+    public void ChangeDifficulty(float addedDiff)
+    {
+        difficulty += addedDiff;
     }
 
 
