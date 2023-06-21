@@ -14,14 +14,17 @@ public class GameHud : MonoBehaviour
     //UI Text GameObjects
     public GameObject targets;
     public GameObject time;
+    public GameObject timesup;
     public GameObject score;
     public GameObject difficulty;
     public GameObject question;
     public GameObject MathDifficulty;
     public GameObject MathLevel;
+    public GameObject return2menu;
     //public UnityEngine.UI.Text targetsHitText;
 
     //Game Variable
+    private float timeLimit = 2f;
     private float targetsHit = 0f;
     private float totalHit = 0f;
     public float timeVar = 0.0f;
@@ -46,6 +49,8 @@ public class GameHud : MonoBehaviour
 
     private void Start()
     {
+        timesup.SetActive(false);
+        return2menu.SetActive(false);
         targetsHitText = targets.GetComponent<TextMeshProUGUI>();
         timeText = time.GetComponent<TextMeshProUGUI>();
         scoreText = score.GetComponent<TextMeshProUGUI>();
@@ -58,6 +63,7 @@ public class GameHud : MonoBehaviour
 
     private void Update()
     {
+        
         timeVar += Time.deltaTime;
         minutes = Mathf.FloorToInt(timeVar / 60F);
         seconds = Mathf.FloorToInt(timeVar - minutes * 60);
@@ -124,6 +130,8 @@ public class GameHud : MonoBehaviour
         UpdateHUD();
     }
 
+
+   
 
 
 }

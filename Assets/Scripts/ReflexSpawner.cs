@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 
 /*
@@ -22,6 +24,10 @@ using UnityEngine;
 
 public class ReflexSpawner : MonoBehaviour
 {
+    private int seconds;
+    private int minutes;
+    private float endWait = 5;
+    public float timeLimit = 2f;
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
@@ -41,6 +47,8 @@ public class ReflexSpawner : MonoBehaviour
         hud.UpdateDifficulty(difficulty);
 
     }
+
+
 
 
     public void SetLastHitTime(float time)
@@ -84,6 +92,23 @@ public class ReflexSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        seconds = hud.seconds;
+        minutes = hud.minutes;
+        if (minutes >= timeLimit)
+        {
+            hud.timesup.SetActive(true); 
+            hud.return2menu.SetActive(true);
+            if (endWait > 0)
+           {
+                hud.return2menu.GetComponent<TextMeshProUGUI>().text = "returning to menu in " + Mathf.FloorToInt(endWait - Mathf.FloorToInt(endWait / 60F) * 60).ToString() + "...";
+                endWait -= Time.deltaTime;
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
+
+        }
 
 
         foreach (GameObject target in new List<GameObject>(targetAgesAndStates.Keys))
@@ -153,6 +178,7 @@ public class ReflexSpawner : MonoBehaviour
             targetAgesAndStates.Remove(target);
         }
     }
-
+    
+    
 
 }

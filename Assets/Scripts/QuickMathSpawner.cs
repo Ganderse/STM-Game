@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 
 /*
  * LEVEL 1 ADDITION SUBSTRACTION between numbers => 20
@@ -99,7 +100,9 @@ public class QuickMathSpawner : MonoBehaviour
         }
 
     }
-
+    private int questionCount;
+    public float questionLimit = 20f;
+    private float endWait = 5;
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
@@ -450,8 +453,23 @@ public class QuickMathSpawner : MonoBehaviour
     void Update()
     {
 
+        if (questionCount >= questionLimit)
+        {
+            hud.timesup.SetActive(true);
+            hud.return2menu.SetActive(true);
+            if (endWait > 0)
+            {
+                hud.return2menu.GetComponent<TextMeshProUGUI>().text = "returning to menu in " + Mathf.FloorToInt(endWait - Mathf.FloorToInt(endWait / 60F) * 60).ToString() + "...";
+                endWait -= Time.deltaTime;
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
 
-        timeSinceLastQuestion += Time.deltaTime;
+
+            timeSinceLastQuestion += Time.deltaTime;
 
 
         //Debug.Log("Time since last Question :" + timeSinceLastQuestion);
