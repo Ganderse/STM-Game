@@ -519,7 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets: {fileID: 51183692}
   time: {fileID: 1920053230}
-  timesup: {fileID: 1311604415}
+  endgame: {fileID: 1311604415}
   score: {fileID: 1567280594}
   difficulty: {fileID: 1991450319}
   question: {fileID: 1190772310}
@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 1311604418}
   - component: {fileID: 1311604417}
   m_Layer: 5
-  m_Name: Time's up
+  m_Name: endgame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,8 +1396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -146.66669, y: 36.09375}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -43, y: 44}
+  m_SizeDelta: {x: 854.542, y: 45.444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311604417
 MonoBehaviour:
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time's up!
+  m_text: game ended
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2200,6 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8dcc67d0f5d4d979eb10d998ce41b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questionLimit: 2
   timer: 0
   target: {fileID: 4127151800748908304, guid: 5d086551f876f4e54afb1f0cf813c332, type: 3}
   hud: {fileID: 377141112}

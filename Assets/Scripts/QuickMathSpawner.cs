@@ -392,6 +392,7 @@ public class QuickMathSpawner : MonoBehaviour
 
 
         Debug.Log("Created a question " + QuestionsAndAnswers[0].toString());
+        questionCount++;
         }
 
     public void QuestionDelete(int index)
@@ -453,9 +454,10 @@ public class QuickMathSpawner : MonoBehaviour
     void Update()
     {
 
-        if (questionCount >= questionLimit)
+        if (questionCount > 2)
         {
-            hud.timesup.SetActive(true);
+            hud.endgame.GetComponent<TextMeshProUGUI>().text = "No more Questions!";
+            hud.endgame.SetActive(true);
             hud.return2menu.SetActive(true);
             if (endWait > 0)
             {

@@ -877,7 +877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets: {fileID: 454546505}
   time: {fileID: 1706020207}
-  timesup: {fileID: 838530495}
+  endgame: {fileID: 838530495}
   score: {fileID: 2069386759}
   difficulty: {fileID: 2000295242}
   question: {fileID: 815804834}
@@ -2882,7 +2882,7 @@ GameObject:
   - component: {fileID: 838530498}
   - component: {fileID: 838530497}
   m_Layer: 5
-  m_Name: timesup
+  m_Name: endgame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3428,6 +3428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46320a60fdf640818b57fffcacc1803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLimit: 2
   timer: 0
   target: {fileID: 437378418}
   Parent: {fileID: 0}

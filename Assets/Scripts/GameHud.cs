@@ -14,7 +14,7 @@ public class GameHud : MonoBehaviour
     //UI Text GameObjects
     public GameObject targets;
     public GameObject time;
-    public GameObject timesup;
+    public GameObject endgame;
     public GameObject score;
     public GameObject difficulty;
     public GameObject question;
@@ -49,7 +49,7 @@ public class GameHud : MonoBehaviour
 
     private void Start()
     {
-        timesup.SetActive(false);
+        endgame.SetActive(false);
         return2menu.SetActive(false);
         targetsHitText = targets.GetComponent<TextMeshProUGUI>();
         timeText = time.GetComponent<TextMeshProUGUI>();
