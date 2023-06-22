@@ -176,7 +176,7 @@ private void Start()
                     //Correct Value 2
                     Value2 = rnd.Next(20);
                     //Wrong value 1
-                    Value3 = rnd.Next(-6, 6);
+                    Value3 = rnd.Next(-6, 7);
                     fakeAnswer = Value1 + Value2 + Value3;
                     Answer = Value1 + Value2;
                     QuestionsAndAnswers.Add(new Operation
@@ -198,7 +198,7 @@ private void Start()
                 case 1:
                     Value1 = rnd.Next(20);
                     Value2 = rnd.Next(20);
-                    Value3 = rnd.Next(-6, 6);
+                    Value3 = rnd.Next(-6, 7);
                     fakeAnswer = Value1 + Value2 + Value3;
                     Answer = Value1 - Value2;
                     QuestionsAndAnswers.Add(new Operation
