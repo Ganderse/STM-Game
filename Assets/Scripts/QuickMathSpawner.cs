@@ -100,7 +100,7 @@ public class QuickMathSpawner : MonoBehaviour
         }
 
     }
-    private int questionCount;
+    private int questionCount = 0;
     public int questionLimit = 20;
     private float endWait = 6;
     private Animations animate;
@@ -389,8 +389,9 @@ public class QuickMathSpawner : MonoBehaviour
 
 
 
-        Debug.Log("Created a question " + QuestionsAndAnswers[0].toString());
+        //Debug.Log("Created a question " + QuestionsAndAnswers[0].toString());
         questionCount++;
+        Debug.Log("Question number: " + questionCount);
         }
 
 
