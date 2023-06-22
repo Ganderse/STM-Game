@@ -244,7 +244,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -65.51666, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1883,7 +1883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35e23e69c029ee4086e09f5c491b97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animate: {fileID: 0}
   source: {fileID: 0}
   clip: {fileID: 0}
   health: 50
@@ -3213,7 +3212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35e23e69c029ee4086e09f5c491b97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animate: {fileID: 0}
   source: {fileID: 0}
   clip: {fileID: 0}
   health: 50
