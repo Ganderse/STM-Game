@@ -38,6 +38,7 @@ public class MathTarget : MonoBehaviour
         QuickMathSpawner.Operation targetQuestion = new QuickMathSpawner.Operation { };
         System.Random rnd = new System.Random();
         //targetAnswerText = targetAnswer.GetComponentInChildren<TextMeshProUGUI>();
+        source = GameObject.Find("TargetHit").GetComponent<AudioSource>();
 
 
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
@@ -45,13 +46,15 @@ public class MathTarget : MonoBehaviour
         //spawner = GameObject.Find("Spawner").GetComponent<QuickMathSpawner>();
         spawner = FindObjectOfType<QuickMathSpawner>();
 
+
         //questions = spawner.QuestionsAndAnswers;
-
         //questions = spawner.QuestionCreator();
-
+        //float numberOfQuestio = spawner.timer;
+        int numberOfquestions = spawner.QuestionsAndAnswers.Count;
+        Debug.Log("number of questions:" + numberOfquestions);
         //if (spawner.QuestionsAndAnswers.Count > 0)
         //{
-            int questionIndex = rnd.Next(0, spawner.QuestionsAndAnswers.Count);
+            int questionIndex = rnd.Next(0, numberOfquestions);
             targetQuestion = spawner.QuestionsAndAnswers[questionIndex];
             spawner.QuestionDelete(questionIndex);
         //} else

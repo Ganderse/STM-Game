@@ -119,15 +119,15 @@ public class QuickMathSpawner : MonoBehaviour
     private Dictionary<GameObject, float> targetAgesAndStates = new Dictionary<GameObject, float>();
     private int QuestionOperator;
 
-    public List<Operation> QuestionsAndAnswers { get; set; }
-    //public IDictionary<int, int[]> QuestionAndAnswers  { get; set; }
+    public List<Operation> QuestionsAndAnswers { get; set; } = new List<Operation> { };
+//public IDictionary<int, int[]> QuestionAndAnswers  { get; set; }
 
 
-    private void Start()
+private void Start()
     {
+        QuestionsAndAnswers = new List<Operation> { };
         hud = GameObject.Find("Canvas").GetComponent<GameHud>();
         hud.UpdateMathDifficulty(difficulty);
-        QuestionsAndAnswers = new List<Operation> { };
 
     }
 

@@ -41,7 +41,6 @@ public class Weapon : MonoBehaviour
             {
               
                 target.TakeDamage(damage);
-                //source.PlayOneShot(clip);
                 lastShot = Time.time;
                 spawner.SetLastHitTime(lastShot);
             }

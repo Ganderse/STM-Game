@@ -47,7 +47,6 @@ public class MathWeapon : MonoBehaviour
 
 
 
-                source.PlayOneShot(clip);
                 lastShot = Time.time;
                 spawner.SetLastHitTime(lastShot);
             }
