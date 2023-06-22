@@ -94,7 +94,6 @@ public class MathTarget : MonoBehaviour
     //User has shot the target
     void Die()
     {
-        hud.IncreaseTargetsHit();
 
         //Debug.Log(hud.timeVar);
         destroyed = true;
@@ -109,7 +108,9 @@ public class MathTarget : MonoBehaviour
         if (issCorrect)
         {
             spawner.ChangeDifficulty(1.0f);
-        } else
+            hud.IncreaseTargetsHit();
+        }
+        else
         {
             spawner.ChangeDifficulty(-1.0f);
         }
