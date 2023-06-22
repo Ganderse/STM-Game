@@ -101,7 +101,7 @@ public class QuickMathSpawner : MonoBehaviour
 
     }
     private int questionCount = 0;
-    public int questionLimit = 20;
+    private int questionLimit = 20;
     private float endWait = 6;
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
@@ -453,7 +453,7 @@ public class QuickMathSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (questionCount > questionLimit)
         {
             hud.endgame.GetComponent<TextMeshProUGUI>().text = "No more Questions!";
