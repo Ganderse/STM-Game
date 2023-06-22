@@ -24,7 +24,7 @@ public class GameHud : MonoBehaviour
     //public UnityEngine.UI.Text targetsHitText;
 
     //Game Variable
-    private float timeLimit = 2f;
+    //private float timeLimit = 2f;
     private float targetsHit = 0f;
     private float totalHit = 0f;
     public float timeVar = 0.0f;

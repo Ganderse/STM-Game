@@ -118,7 +118,7 @@ public class ReflexSpawner : MonoBehaviour
             targetAgesAndStates[target] += Time.deltaTime;
 
 
-            // Check if the target is dead or not
+            // Check if the target is dead or not + adjust difficulty
             CheckTargetAlive(target);
         }
 
@@ -141,9 +141,7 @@ public class ReflexSpawner : MonoBehaviour
             // Store the target's age and dead state
             targetAgesAndStates.Add(obj, 0);
             //Debug.Log("Targets age at spawn"+targetAgesAndStates[obj]);
-
         }
-
     }
 
     
@@ -153,8 +151,10 @@ public class ReflexSpawner : MonoBehaviour
         // Check if the target is dead or not
         if (targetAgesAndStates[target] > difficulty) //TODO Change this variable to change the lifetime of the target
         {
+            Debug.Log("Reached difficulty changer");
             //Debug.Log("Target's age:" + targetAgesAndStates[target]);
             difficulty += difficulty * 0.1f;
+            Debug.Log("New difficulty is : "+difficulty);
             score = -100;
             hud.UpdateScore(score);
             hud.UpdateDifficulty(difficulty);
