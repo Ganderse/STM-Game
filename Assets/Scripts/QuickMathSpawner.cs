@@ -101,8 +101,8 @@ public class QuickMathSpawner : MonoBehaviour
 
     }
     private int questionCount;
-    public float questionLimit = 20f;
-    private float endWait = 5;
+    public int questionLimit = 20;
+    private float endWait = 6;
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
     public GameObject target;
@@ -117,8 +117,6 @@ public class QuickMathSpawner : MonoBehaviour
     private float timeBetweenSpawnAndHit = 0.0f;
     private float timeSinceLastQuestion = 0.0f;
     private Dictionary<GameObject, float> targetAgesAndStates = new Dictionary<GameObject, float>();
-    private string[] easyList = { "+", "-" };
-    private string[] middleList = { "*", "/" };
     private int QuestionOperator;
 
     public List<Operation> QuestionsAndAnswers { get; set; }
@@ -395,6 +393,7 @@ public class QuickMathSpawner : MonoBehaviour
         questionCount++;
         }
 
+
     public void QuestionDelete(int index)
     {
         QuestionsAndAnswers.RemoveAt(index);
@@ -461,7 +460,7 @@ public class QuickMathSpawner : MonoBehaviour
             hud.return2menu.SetActive(true);
             if (endWait > 0)
             {
-                hud.return2menu.GetComponent<TextMeshProUGUI>().text = "returning to menu in " + Mathf.FloorToInt(endWait - Mathf.FloorToInt(endWait / 60F) * 60).ToString() + "...";
+                hud.return2menu.GetComponent<TextMeshProUGUI>().text = "Returning to main-menu in " + Mathf.FloorToInt(endWait - Mathf.FloorToInt(endWait / 60F) * 60).ToString() + "...";
                 endWait -= Time.deltaTime;
             }
             else
@@ -510,11 +509,11 @@ public class QuickMathSpawner : MonoBehaviour
 
             //Spawning the targets
             GameObject firstTarget = Instantiate(target);
-            firstTarget.transform.position = new Vector3(-1.7f, 1.4f, transform.position[2]);
+            firstTarget.transform.position = new Vector3(-1.5f, 1.5f, transform.position[2]);
             //Debug.Log("Spawning first target");
 
             GameObject secondTarget = Instantiate(target);
-            secondTarget.transform.position = new Vector3(1.5f, 1.4f, transform.position[2]);
+            secondTarget.transform.position = new Vector3(1.5f, 1.5f, transform.position[2]);
 
             
             timeTargetSpawn = Time.time;

@@ -26,7 +26,7 @@ public class ReflexSpawner : MonoBehaviour
 {
     private int seconds;
     private int minutes;
-    private float endWait = 5;
+    private float endWait = 6;
     public float timeLimit = 2f;
     private Animations animate;
     public float timer = 0.0f; //Time since last target spawn
@@ -136,7 +136,7 @@ public class ReflexSpawner : MonoBehaviour
             hud.UpdateTotalHit();
             //obj.AddComponent<Target>();
             //obj.transform.localScale
-            obj.transform.position = new Vector3(NextFloat(-2.5f,2.5f), NextFloat(0.5f,5f), transform.position[2]);
+            obj.transform.position = new Vector3(NextFloat(-2.5f,2.5f), NextFloat(0.5f,3f), transform.position[2]);
             timeTargetSpawn = Time.time;
             // Store the target's age and dead state
             targetAgesAndStates.Add(obj, 0);

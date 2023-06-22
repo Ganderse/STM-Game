@@ -49,15 +49,15 @@ public class MathTarget : MonoBehaviour
 
         //questions = spawner.QuestionCreator();
 
-        if (spawner.QuestionsAndAnswers.Count > 0)
-        {
+        //if (spawner.QuestionsAndAnswers.Count > 0)
+        //{
             int questionIndex = rnd.Next(0, spawner.QuestionsAndAnswers.Count);
             targetQuestion = spawner.QuestionsAndAnswers[questionIndex];
             spawner.QuestionDelete(questionIndex);
-        } else
-        {
-            Debug.Log("No more questions in list");
-        }
+        //} else
+        //{
+        //    Debug.Log("No more questions in list");
+        //}
 
         givenAnswer = targetQuestion.AnswerCandidate;
         issCorrect = targetQuestion.isCorrect;
